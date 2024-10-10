@@ -1,8 +1,0 @@
-we have 2 user defined desync profile(s) and default low priority profile 0
-Loading hostlist C:\software\DloPI\dpi\list-youtube.txt
-loading plain text list
-Loaded 3 hosts from C:\software\DloPI\dpi\list-youtube.txt
-Loading hostlist C:\software\DloPI\dpi\list-discord.txt
-loading plain text list
-Loaded 24 hosts from C:\software\DloPI\dpi\list-discord.txt
-windivert initialized. capture is started.

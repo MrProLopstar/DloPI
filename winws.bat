@@ -41,15 +41,15 @@ if not exist "%exe%" (
     echo winws.exe найден по пути "%exe%".
 )
 
-set "params=--wf-tcp=443-65535 --wf-udp=443-65535 --filter-udp=443 --hostlist=C:\software\DloPI\dpi\list-discord.txt --hostlist=C:\software\DloPI\dpi\list-youtube.txt --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=C:\software\DloPI\dpi\quic_initial_www_google_com.bin --new --filter-udp=50000-65535 --dpi-desync=fake,tamper --dpi-desync-any-protocol --dpi-desync-fake-quic=C:\software\DloPI\dpi\quic_initial_www_google_com.bin --filter-tcp=443 --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=C:\software\DloPI\dpi\tls_clienthello_www_google_com.bin"
+set "params=--wf-tcp=443-65535 --wf-udp=443-65535 --filter-udp=443 --hostlist=%~dp0dpi\list-discord.txt --hostlist=%~dp0dpi\list-youtube.txt --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic=%~dp0dpi\quic_initial_www_google_com.bin --new --filter-udp=50000-65535 --dpi-desync=fake,tamper --dpi-desync-any-protocol --dpi-desync-fake-quic=%~dp0dpi\quic_initial_www_google_com.bin --filter-tcp=443 --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls=%~dp0dpi\tls_clienthello_www_google_com.bin"
 
 if exist "%~dp0dpi\list-domains.txt" (
     echo Добавление list-domains.txt...
-    set "params=%params% --hostlist=C:\software\DloPI\dpi\list-domains.txt"
+    set "params=%params% --hostlist=%~dp0list-domains.txt"
 )
 if exist "%~dp0dpi\list-customs-domains.txt" (
     echo Добавление list-customs-domains.txt...
-    set "params=%params% --hostlist=C:\software\DloPI\dpi\list-customs-domains.txt"
+    set "params=%params% --hostlist=%~dp0list-customs-domains.txt"
 )
 
 echo Параметры запуска:
