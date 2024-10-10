@@ -21,6 +21,7 @@ echo Описание скриптов:
 echo 1) controld - предоставляет доступ к сайтам, заблокированным в России.
 echo 2) winws - помогает обходить блокировки РКН (например, YouTube, Discord).
 echo 4) Остановить оба скрипта и удалить из автозапуска.
+echo 5) Скачать список доменов антифильтра.
 echo.
 echo =======================================================
 echo Выберите, что вы хотите сделать:
@@ -29,6 +30,7 @@ echo 1 - Запустить оба скрипта: controld и winws
 echo 2 - Запустить только controld
 echo 3 - Запустить только winws
 echo 4 - Остановить все и убрать из автозапуска
+echo 5 - Скачать список доменов антифильтра
 echo.
 echo 0 - Выход
 echo.
@@ -73,6 +75,14 @@ if "%choice%"=="4" (
     echo Откройте папку автозагрузки и удалите ярлык winws-autostart вручную.
     start explorer "%AppData%\Microsoft\Windows\Start Menu\Programs\Startup"
 
+    pause
+    goto end
+)
+
+if "%choice%"=="5" (
+    echo Скачивание списка доменов антифильтра...
+    powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://antifilter.download/list/domains.lst', '%~dp0list-domains.txt')"
+    echo Список доменов сохранен как list-domains.txt
     pause
     goto end
 )

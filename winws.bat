@@ -28,7 +28,19 @@ if "%ERRORLEVEL%"=="0" (
 )
 
 set exe=%~dp0dpi\winws.exe
-set params=--wf-tcp=443-65535 --wf-udp=443-65535 --filter-udp=443 --hostlist="%~dp0list-discord.txt" --hostlist="%~dp0list-youtube.txt" --hostlist="%~dp0list-main.txt" --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic="%~dp0dpi\quic_initial_www_google_com.bin" --new --filter-udp=50000-65535 --dpi-desync=fake,tamper --dpi-desync-any-protocol --dpi-desync-fake-quic="%~dp0dpi\quic_initial_www_google_com.bin" --filter-tcp=443 --dpi-desync=fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls="%~dp0dpi\tls_clienthello_www_google_com.bin"
+set params=--wf-tcp=443-65535 --wf-udp=443-65535 --filter-udp=443 --hostlist="%~dp0list-discord.txt" --hostlist="%~dp0list-youtube.txt"
+
+if exist "%~dp0list-domains.txt" (
+    echo Добавление файла list-domains.txt...
+    set params=%params% --hostlist="%~dp0list-domains.txt"
+)
+
+if exist "%~dp0list-customs-domains.txt" (
+    echo Добавление файла list-customs-domains.txt...
+    set params=%params% --hostlist="%~dp0list-customs-domains.txt"
+)
+
+set params=%params% --dpi-desync=fake --dpi-desync-udplen-increment=10 --dpi-desync-repeats=6 --dpi-desync-udplen-pattern=0xDEADBEEF --dpi-desync-fake-quic="%~dp0dpi\quic_initial_www_google_com.bin" --new --filter-udp=50000-65535 --dpi-desync=fake,tamper --dpi-desync-any-protocol --dpi-desync-fake-quic="%~dp0dpi\quic_initial_www_google_com.bin" --filter-tcp=443 --dpi-desync-fake,split2 --dpi-desync-autottl=2 --dpi-desync-fooling=md5sig --dpi-desync-fake-tls="%~dp0dpi\tls_clienthello_www_google_com.bin"
 
 powershell -WindowStyle Hidden -Command "Start-Process '%exe%' '%params%' -WindowStyle Hidden"
 
